@@ -1,0 +1,15 @@
+__pycache__/
+__pycache__
+venv
+.env
+.idea
+logs/
+.pytest_cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+.pytest_cache/
