@@ -10,6 +10,62 @@
 - Асинхронная обработка запросов
 - RESTful API на базе FastAPI
 
+## API Эндпоинты
+
+### POST /api/v1/parse
+Запуск парсинга статьи Википедии
+
+**Тело запроса:**
+```json
+{
+  "url": "https://ru.wikipedia.org/wiki/Python"
+}
+```
+
+![image](https://github.com/user-attachments/assets/91a63aa6-731c-4fca-b691-8514ad2dc4c4)
+
+
+**Ответ:**
+```json
+{
+  "id": 1,
+  "url": "https://ru.wikipedia.org/wiki/Python",
+  "title": "Article Name",
+  "content": "Article content...",
+  "depth_level": 0,
+  "summary": "AI generated summary...",
+  "summary_generated": true,
+  "created_at": "2024-01-01T00:00:00Z",
+  "parent_id": null,
+  "children": []
+}
+```
+
+### GET /api/v1/summary?url={url}
+Получение краткого содержания статьи
+
+**Параметры:**
+- `url` - URL статьи Википедии
+
+![image](https://github.com/user-attachments/assets/b6057c23-7d0c-46be-aa43-38dbe8343b14)
+
+
+**Ответ:**
+```json
+{
+  "url": "https://ru.wikipedia.org/wiki/Python",
+  "title": "Article Name",
+  "summary": "AI generated summary...",
+  "summary_generated": true
+}
+```
+
+### POST /api/v1/generate-summaries
+Генерация краткого содержания для всех статей без summary
+
+![image](https://github.com/user-attachments/assets/f3fb20df-d9f6-4238-a010-04b947d94293)
+![image](https://github.com/user-attachments/assets/4decec52-8c34-4e48-91fb-ccaae35184c2)
+
 ## Технологии
 
 - **FastAPI** - веб-фреймворк
@@ -68,53 +124,6 @@ app/
    ```bash
    uvicorn app.main:app --reload
    ```
-
-## API Эндпоинты
-
-### POST /api/v1/parse
-Запуск парсинга статьи Википедии
-
-**Тело запроса:**
-```json
-{
-  "url": "https://ru.wikipedia.org/wiki/Python"
-}
-```
-
-**Ответ:**
-```json
-{
-  "id": 1,
-  "url": "https://ru.wikipedia.org/wiki/Python",
-  "title": "Article Name",
-  "content": "Article content...",
-  "depth_level": 0,
-  "summary": "AI generated summary...",
-  "summary_generated": true,
-  "created_at": "2024-01-01T00:00:00Z",
-  "parent_id": null,
-  "children": []
-}
-```
-
-### GET /api/v1/summary?url={url}
-Получение краткого содержания статьи
-
-**Параметры:**
-- `url` - URL статьи Википедии
-
-**Ответ:**
-```json
-{
-  "url": "https://ru.wikipedia.org/wiki/Python",
-  "title": "Article Name",
-  "summary": "AI generated summary...",
-  "summary_generated": true
-}
-```
-
-### POST /api/v1/generate-summaries
-Генерация краткого содержания для всех статей без summary
 
 ## Особенности реализации
 
